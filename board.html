@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stockfish 18 Board</title>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem("chess-opening-theme") || "light";
+      document.documentElement.dataset.theme = savedTheme === "dark" ? "dark" : "light";
+    } catch (error) {
+      document.documentElement.dataset.theme = "light";
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #f4f7fb;
+      --muted: #c2ceda;
+      --line: rgba(216, 229, 240, 0.2);
+      --panel: rgba(25, 39, 48, 0.9);
+      --soft: rgba(255, 255, 255, 0.08);
+      --dark: #6aa843;
+      --field: rgba(10, 19, 27, 0.88);
+      --page-bg:
+        radial-gradient(circle at 20% 20%, rgba(83, 112, 122, 0.42), transparent 34%),
+        linear-gradient(115deg, #1e2d32 0%, #121b22 52%, #23323a 100%);
+      --blue: #8dc9f1;
+      --square-light: #bfe3ea;
+      --square-dark: #075c92;
+      --white-piece: #ffffff;
+      --white-piece-edge: #080b10;
+      --black-piece: #020407;
+      --black-piece-edge: rgba(239, 250, 255, 0.72);
+      --arrow: #f0cf4c;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --ink: #eef3ff;
+      --muted: #aab6ca;
+      --line: rgba(219, 235, 255, 0.18);
+      --panel: rgba(12, 19, 29, 0.92);
+      --soft: rgba(255, 255, 255, 0.07);
+      --dark: #78b750;
+      --field: rgba(6, 11, 19, 0.9);
+      --page-bg:
+        radial-gradient(circle at 75% 10%, rgba(35, 80, 116, 0.34), transparent 32%),
+        linear-gradient(120deg, #101827 0%, #07101d 58%, #182738 100%);
+      --blue: #85a7ff;
+      --square-light: #abd9e4;
+      --square-dark: #034f83;
+      --white-piece: #ffffff;
+      --white-piece-edge: #02050a;
+      --black-piece: #000000;
+      --black-piece-edge: rgba(238, 249, 255, 0.68);
+      --arrow: #ffbf3d;
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .app {
+      width: min(1500px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 14px 0 34px;
+    }
+
+    .topbar,
+    .main-nav,
+    .trainer-shell {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      backdrop-filter: blur(14px);
+    }
+
+    .heading-actions {
+      display: flex;
+      align-items: start;
+      justify-content: end;
+    }
+
+    .theme-toggle {
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .theme-toggle:focus,
+    .theme-toggle:hover {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(141, 201, 241, 0.16);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: max-content;
+      margin-bottom: 8px;
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(30px, 4.4vw, 48px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .intro,
+    .trainer-panel p,
+    .status-box p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .main-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 8px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(14px);
+    }
+
+    .main-nav a {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .main-nav a.active {
+      border-color: var(--dark);
+      background: var(--dark);
+      color: #ffffff;
+    }
+
+    .trainer-shell {
+      display: grid;
+      grid-template-columns: minmax(520px, 720px) minmax(330px, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding: 16px;
+      backdrop-filter: blur(16px);
+    }
+
+    .board {
+      position: relative;
+      align-self: stretch;
+      overflow: hidden;
+      min-height: 220px;
+      border: 3px solid rgba(8, 14, 25, 0.72);
+      border-radius: 5px;
+      background: #0a3150;
+      box-shadow:
+        0 20px 38px rgba(0, 0, 0, 0.34),
+        0 0 0 1px rgba(228, 245, 255, 0.18) inset;
+    }
+
+    .board.playing {
+      width: 100%;
+      min-height: auto;
+      aspect-ratio: 1;
+      justify-self: center;
+    }
+
+    .board-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1;
+    }
+
+    .board-arrows {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .board-arrows marker path {
+      fill: var(--arrow);
+    }
+
+    .board-arrow {
+      stroke: var(--arrow);
+      stroke-width: 1.55;
+      stroke-linecap: round;
+      opacity: 0.72;
+      marker-end: url("#arrow-head");
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.28));
+    }
+
+    .board-arrow.draft {
+      opacity: 0.48;
+      stroke-dasharray: 2.2 2.2;
+    }
+
+    .square {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1;
+      padding: 0;
+      border: 0;
+      appearance: none;
+      color: #1c2333;
+      cursor: pointer;
+      font-size: clamp(42px, 6.2vw, 90px);
+      font-weight: 800;
+      line-height: 1;
+      touch-action: none;
+      user-select: none;
+    }
+
+    .square.light {
+      background-color: var(--square-light);
+      background-image:
+        radial-gradient(circle at 22% 16%, rgba(255, 255, 255, 0.55), transparent 21%),
+        radial-gradient(circle at 80% 74%, rgba(255, 255, 255, 0.28), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(10, 80, 117, 0.12)),
+        repeating-linear-gradient(22deg, rgba(14, 64, 100, 0.11) 0 2px, transparent 2px 17px);
+      background-blend-mode: screen, soft-light, normal, normal;
+    }
+
+    .square.dark {
+      background-color: var(--square-dark);
+      background-image:
+        radial-gradient(circle at 28% 22%, rgba(24, 131, 178, 0.7), transparent 27%),
+        radial-gradient(circle at 74% 76%, rgba(3, 41, 83, 0.58), transparent 31%),
+        linear-gradient(135deg, rgba(5, 104, 161, 0.94), rgba(1, 52, 100, 0.88)),
+        repeating-linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 19px);
+      background-blend-mode: screen, multiply, normal, normal;
+    }
+
+    .square.black-piece,
+    .drag-ghost.black-piece {
+      color: var(--black-piece);
+      text-shadow:
+        1px 0 0 var(--black-piece-edge),
+        -1px 0 0 var(--black-piece-edge),
+        0 1px 0 var(--black-piece-edge),
+        0 -1px 0 var(--black-piece-edge),
+        2px 2px 0 rgba(0, 0, 0, 0.24),
+        0 7px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .square.white-piece,
+    .drag-ghost.white-piece {
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      text-shadow:
+        2px 0 0 var(--white-piece-edge),
+        -2px 0 0 var(--white-piece-edge),
+        0 2px 0 var(--white-piece-edge),
+        0 -2px 0 var(--white-piece-edge),
+        1px 1px 0 var(--white-piece-edge),
+        -1px -1px 0 var(--white-piece-edge),
+        0 8px 9px rgba(0, 0, 0, 0.32);
+    }
+
+    .piece-wk,
+    .piece-wq {
+      color: inherit;
+    }
+
+    .piece-bk,
+    .piece-bq {
+      color: inherit;
+    }
+
+    .coord-label {
+      position: absolute;
+      z-index: 3;
+      color: rgba(0, 15, 30, 0.62);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: clamp(9px, 0.9vw, 12px);
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    .dark .coord-label,
+    .black-piece .coord-label {
+      color: rgba(236, 249, 255, 0.74);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+    }
+
+    .rank-label {
+      top: 4px;
+      left: 5px;
+    }
+
+    .file-label {
+      right: 5px;
+      bottom: 4px;
+    }
+
+    .piece-glyph {
+      position: relative;
+      z-index: 2;
+      display: block;
+      transform: translateY(-1px) scale(1.08);
+    }
+
+    .square.drag-source .piece-glyph {
+      opacity: 0;
+    }
+
+    .drag-ghost {
+      position: absolute;
+      left: var(--drag-x);
+      top: var(--drag-y);
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      width: 12.5%;
+      aspect-ratio: 1;
+      color: #1c2333;
+      font-size: clamp(42px, 6.2vw, 90px);
+      font-weight: 800;
+      line-height: 1;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(1.08);
+      filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.28));
+    }
+
+    .square.selected {
+      outline: 4px solid rgba(255, 219, 82, 0.92);
+      outline-offset: -3px;
+    }
+
+    .square.legal::after {
+      content: "";
+      position: absolute;
+      width: 24%;
+      aspect-ratio: 1;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.48);
+      box-shadow: 0 0 0 3px rgba(2, 25, 47, 0.2);
+    }
+
+    .square.last-move {
+      box-shadow: inset 0 0 0 999px rgba(255, 211, 77, 0.2);
+    }
+
+    .square.drag-target {
+      box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.24);
+    }
+
+    .square.premove-from,
+    .square.premove-to {
+      box-shadow: inset 0 0 0 999px rgba(132, 228, 255, 0.28);
+    }
+
+    .trainer-panel {
+      display: grid;
+      gap: 13px;
+      min-width: 0;
+    }
+
+    .trainer-panel h2 {
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .trainer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .trainer-field {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .trainer-field.wide {
+      grid-column: 1 / -1;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--field);
+      color: var(--ink);
+      outline: none;
+    }
+
+    input {
+      padding: 0 14px;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    select {
+      padding: 0 12px;
+      font-weight: 700;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(71, 103, 177, 0.16);
+    }
+
+    .command-panel {
+      display: grid;
+      gap: 8px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+    }
+
+    .trainer-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .trainer-actions button {
+      min-height: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--field);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .trainer-actions button.primary {
+      border-color: var(--dark);
+      background: var(--dark);
+      color: #ffffff;
+    }
+
+    .trainer-actions button:focus,
+    .trainer-actions button:hover {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(71, 103, 177, 0.13);
+    }
+
+    .status-box {
+      display: grid;
+      gap: 5px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+    }
+
+    .status-box strong {
+      font-size: 15px;
+    }
+
+    .move-list {
+      min-height: 76px;
+      max-height: 170px;
+      overflow: auto;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--field);
+      color: var(--muted);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 900px) {
+      .topbar,
+      .trainer-shell,
+      .trainer-grid,
+      .trainer-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .heading-actions {
+        justify-content: start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app {
+        width: min(100% - 20px, 1280px);
+        padding-top: 10px;
+      }
+
+      .topbar,
+      .trainer-shell {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">Stockfish 18 board</span>
+        <h1>Opening Trainer</h1>
+        <p class="intro">Play the selected repertoire line against Stockfish 18.</p>
+      </div>
+      <div class="heading-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button">Dark theme</button>
+      </div>
+    </header>
+
+    <nav class="main-nav" aria-label="Pages">
+      <a href="board.html" data-nav-page="practice">Board</a>
+      <a href="index.html#repertoire">Repertoire</a>
+      <a href="index.html#study">Study</a>
+    </nav>
+
+    <section class="trainer-shell" aria-label="Opening trainer">
+      <div class="board playing" id="board" aria-label="Playable chessboard"></div>
+      <div class="trainer-panel">
+        <div>
+          <h2>Board Commands</h2>
+          <p>Choose the line, move pieces, and use right-drag arrows while Stockfish 18 responds.</p>
+        </div>
+        <div class="trainer-grid">
+          <label class="trainer-field wide">
+            Opening line
+            <select id="opening-choice"></select>
+          </label>
+          <label class="trainer-field">
+            You play
+            <input id="player-side" type="text" value="White" readonly>
+          </label>
+          <label class="trainer-field">
+            Stockfish 18 level
+            <select id="engine-strength">
+              <option value="1000">Friendly 1000</option>
+              <option value="1300" selected>Club 1300</option>
+              <option value="1600">Sharp 1600</option>
+              <option value="2000">Strong 2000</option>
+              <option value="2500">Master 2500</option>
+              <option value="3000">Elite 3000</option>
+              <option value="max">Max strength</option>
+            </select>
+          </label>
+        </div>
+        <div class="command-panel">
+          <div class="trainer-actions">
+            <button class="primary" id="new-game" type="button">New game</button>
+            <button id="flip-board" type="button">Flip board</button>
+            <button id="undo-move" type="button">Undo move</button>
+            <button id="clear-arrows" type="button">Clear arrows</button>
+            <button id="clear-premove" type="button">Clear premove</button>
+          </div>
+        </div>
+        <div class="status-box">
+          <strong id="trainer-status">Loading trainer...</strong>
+          <p id="book-status">Opening book is ready.</p>
+          <p id="premove-status" hidden></p>
+          <p id="engine-status">Stockfish 18 is starting.</p>
+        </div>
+        <div class="move-list" id="move-list">Moves will appear here.</div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./trainer.js"></script>
+</body>
+</html>
