@@ -15,11 +15,11 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg0: #060b13;
-      --bg1: #0a1220;
-      --bg2: #111b2c;
-      --card: rgba(15, 24, 38, .78);
-      --card2: rgba(10, 17, 29, .92);
+      --bg0: #070907;
+      --bg1: #101410;
+      --bg2: #171c17;
+      --card: rgba(19, 24, 20, .84);
+      --card2: rgba(12, 16, 13, .94);
       --text: #f4f7fb;
       --muted: #95a4b8;
       --soft: #cbd5e1;
@@ -29,14 +29,16 @@
       --accent2: #a3e635;
       --blue: #65b7ff;
       --danger: #ff6868;
+      --good: #a3e635;
+      --warn: #facc15;
       --light-square: #eeeed2;
       --dark-square: #769656;
       --last: rgba(246, 246, 105, .46);
       --select: rgba(255, 255, 110, .64);
       --legal: rgba(0, 0, 0, .22);
       --arrow: #facc15;
-      --shadow: 0 24px 60px rgba(0, 0, 0, .38);
-      --radius: 22px;
+      --shadow: 0 18px 48px rgba(0, 0, 0, .34);
+      --radius: 14px;
     }
 
     html[data-theme="light"] {
@@ -54,7 +56,10 @@
       --accent: #74a94f;
       --accent2: #4f8a33;
       --blue: #2563eb;
-      --shadow: 0 20px 50px rgba(51, 65, 85, .16);
+      --danger: #dc2626;
+      --good: #4f8a33;
+      --warn: #b45309;
+      --shadow: 0 14px 36px rgba(51, 65, 85, .13);
     }
 
     * { box-sizing: border-box; }
@@ -63,9 +68,8 @@
       margin: 0;
       min-height: 100vh;
       background:
-        radial-gradient(circle at 8% -10%, rgba(129, 196, 93, .26), transparent 36rem),
-        radial-gradient(circle at 92% 10%, rgba(101, 183, 255, .22), transparent 34rem),
-        linear-gradient(135deg, var(--bg0), var(--bg1) 45%, var(--bg2));
+        linear-gradient(135deg, var(--bg0), var(--bg1) 48%, var(--bg2)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 1px, transparent 1px 24px);
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.45;
@@ -78,7 +82,7 @@
     .app {
       width: min(1220px, calc(100% - 24px));
       margin: 0 auto;
-      padding: 14px 0 32px;
+      padding: 12px 0 32px;
     }
 
     .topbar {
@@ -95,14 +99,36 @@
       backdrop-filter: blur(18px);
     }
 
-    .brand { display: grid; gap: 5px; min-width: 0; }
+    .brand {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      min-width: 0;
+    }
+    .brand-copy { display: grid; gap: 5px; min-width: 0; }
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(163, 230, 53, .28);
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(163, 230, 53, .18), rgba(101, 183, 255, .08)),
+        var(--card2);
+      color: var(--accent2);
+      font-size: 28px;
+      font-weight: 950;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
     .eyebrow {
       width: fit-content;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 5px 10px;
-      border-radius: 999px;
+      border-radius: 8px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,.06);
       color: var(--muted);
@@ -130,11 +156,13 @@
       font-size: clamp(13px, 2.6vw, 16px);
     }
 
-    .top-actions { display: flex; align-items: center; gap: 8px; }
+    .top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .auth-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .is-hidden { display: none !important; }
     .theme-toggle, .nav a, .button, select, input {
       min-height: 44px;
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 10px;
       background: var(--card2);
       color: var(--text);
       font-weight: 850;
@@ -144,9 +172,55 @@
       padding: 0 14px;
       cursor: pointer;
     }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .button:active { transform: translateY(1px); }
     .theme-toggle:hover, .button:hover, select:focus, input:focus {
       border-color: color-mix(in srgb, var(--accent) 70%, white 15%);
       box-shadow: 0 0 0 4px rgba(129, 196, 93, .13);
+    }
+    .button:focus-visible, .theme-toggle:focus-visible, .nav a:focus-visible, select:focus-visible, input:focus-visible {
+      outline: 3px solid rgba(163, 230, 53, .42);
+      outline-offset: 2px;
+    }
+    .top-actions .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .button.primary-link {
+      color: #101827;
+      border: 0;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 10px 28px rgba(129, 196, 93, .24);
+    }
+    .user-chip {
+      min-height: 44px;
+      display: none;
+      align-items: center;
+      gap: 9px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--card2);
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 850;
+    }
+    .user-chip.active { display: inline-flex; }
+    .user-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--good);
+      box-shadow: 0 0 14px rgba(163, 230, 53, .55);
     }
 
     .nav {
@@ -228,6 +302,30 @@
       font-size: 12px;
       font-weight: 900;
     }
+    .board-footer {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .mini-stat {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line2);
+      border-radius: 13px;
+      background: rgba(5, 12, 22, .46);
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 900;
+      text-align: center;
+      padding: 0 9px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    html[data-theme="light"] .mini-stat { background: rgba(255,255,255,.68); }
 
     .board {
       position: relative;
@@ -335,6 +433,7 @@
       text-shadow: 0 2px 0 rgba(255,255,255,.62), 0 4px 8px rgba(0,0,0,.2);
     }
     .white-piece .piece-fallback { color: #fff; text-shadow: 0 2px 0 #000, 0 4px 8px rgba(0,0,0,.45); }
+    .square.drag-source .piece-wrap { opacity: 0; }
     .drag-ghost {
       position: absolute;
       left: 0;
@@ -368,14 +467,24 @@
     .board-arrows marker path { fill: var(--arrow); }
 
     .panel-stack { display: grid; gap: 12px; }
-    .panel-card, .status-card, .moves-card { padding: 14px; }
+    .panel-card, .status-card, .moves-card, .stats-card { padding: 14px; }
     .panel-head { display: grid; gap: 4px; margin-bottom: 12px; }
     .panel-head h2 { font-size: clamp(22px, 3vw, 30px); letter-spacing: -.04em; }
-    .panel-head p, .field span, .status-card p { color: var(--muted); }
+    .panel-head p, .field span, .status-card p, .field-help { color: var(--muted); }
 
     .fields { display: grid; gap: 10px; }
     .field { display: grid; gap: 7px; font-weight: 900; }
     .field span { font-size: 13px; }
+    .field-help {
+      margin-top: -2px;
+      padding: 10px;
+      border: 1px solid var(--line2);
+      border-radius: 10px;
+      background: rgba(0,0,0,.16);
+      font-size: 13px;
+      font-weight: 720;
+    }
+    html[data-theme="light"] .field-help { background: rgba(255,255,255,.62); }
     select, input {
       width: 100%;
       padding: 0 14px;
@@ -394,6 +503,13 @@
       min-height: 46px;
       background: rgba(5, 12, 22, .72);
     }
+    .button.compact {
+      min-height: 36px;
+      padding: 0 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 900;
+    }
     .button.primary {
       color: #101827;
       border: 0;
@@ -401,7 +517,24 @@
       box-shadow: 0 10px 28px rgba(129, 196, 93, .24);
     }
 
-    .status-card { display: grid; gap: 9px; }
+    .status-card {
+      display: grid;
+      gap: 9px;
+      border-left: 4px solid rgba(101, 183, 255, .54);
+      transition: border-color .16s ease, background .16s ease;
+    }
+    .status-card.good {
+      border-left-color: rgba(163, 230, 53, .8);
+      background: linear-gradient(135deg, rgba(22, 101, 52, .18), var(--card));
+    }
+    .status-card.bad {
+      border-left-color: rgba(248, 113, 113, .9);
+      background: linear-gradient(135deg, rgba(127, 29, 29, .2), var(--card));
+    }
+    .status-card.thinking {
+      border-left-color: rgba(250, 204, 21, .9);
+      background: linear-gradient(135deg, rgba(113, 63, 18, .16), var(--card));
+    }
     .status-main { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .status-main strong { font-size: 20px; letter-spacing: -.03em; }
     .mini-chip {
@@ -414,7 +547,14 @@
       font-weight: 900;
       white-space: nowrap;
     }
-    .moves-card h3 { margin-bottom: 8px; font-size: 15px; color: var(--soft); }
+    .moves-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .moves-card h3 { font-size: 15px; color: var(--soft); }
     .move-list {
       min-height: 90px;
       max-height: 190px;
@@ -427,6 +567,48 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 13px;
       overflow-wrap: anywhere;
+    }
+    .stats-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+    .stats-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .stats-head h3 { font-size: 15px; color: var(--soft); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .stat-tile {
+      min-height: 72px;
+      display: grid;
+      align-content: center;
+      gap: 4px;
+      padding: 10px;
+      border: 1px solid var(--line2);
+      border-radius: 10px;
+      background: rgba(0,0,0,.18);
+    }
+    html[data-theme="light"] .stat-tile { background: rgba(255,255,255,.68); }
+    .stat-value {
+      color: var(--text);
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 950;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
     }
 
     .help-grid {
@@ -451,7 +633,7 @@
     .puzzle-box {
       margin-top: 12px;
       padding: 12px;
-      border-radius: 18px;
+      border-radius: 12px;
       border: 1px solid rgba(129, 196, 93, .22);
       background:
         radial-gradient(circle at 15% 0%, rgba(163, 230, 53, .16), transparent 16rem),
@@ -505,7 +687,7 @@
       margin-top: 10px;
       padding: 10px;
       border: 1px solid var(--line2);
-      border-radius: 14px;
+      border-radius: 10px;
       background: rgba(0,0,0,.18);
       color: var(--soft);
       font-size: 13px;
@@ -564,12 +746,18 @@
       .subtitle { display: none; }
       .eyebrow { font-size: 10px; padding: 4px 8px; }
       h1 { font-size: 30px; }
-      .theme-toggle { min-height: 38px; padding: 0 10px; }
+      .top-actions { justify-content: start; }
+      .theme-toggle, .top-actions .button { min-height: 38px; padding: 0 10px; }
+      .user-chip { min-height: 38px; }
       .nav { top: 4px; overflow-x: auto; border-radius: 15px; }
       .nav a { min-width: 86px; min-height: 38px; padding: 0 10px; }
-      .board-card, .panel-card, .status-card, .moves-card { border-radius: 18px; padding: 10px; }
+      .brand { grid-template-columns: 1fr; }
+      .brand-mark { display: none; }
+      .board-card, .panel-card, .status-card, .moves-card, .stats-card { border-radius: 14px; padding: 10px; }
       .board { border-radius: 12px; }
+      .board-footer { grid-template-columns: 1fr; }
       .action-grid, .puzzle-actions { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
       .panel-head h2 { font-size: 23px; }
       .status-main { align-items: start; flex-direction: column; }
     }
@@ -579,11 +767,20 @@
   <main class="app">
     <header class="topbar">
       <div class="brand">
-        <span class="eyebrow">Stockfish 18 trainer</span>
-        <h1>Opening Trainer</h1>
-        <p class="subtitle">Simple aggressive repertoire. No boring exchange-line mess.</p>
+        <div class="brand-mark" aria-hidden="true">♞</div>
+        <div class="brand-copy">
+          <span class="eyebrow">Stockfish 18 trainer</span>
+          <h1>Chess Opening Trainer</h1>
+          <p class="subtitle">Simple aggressive repertoire. No boring exchange-line mess.</p>
+        </div>
       </div>
       <div class="top-actions">
+        <span class="user-chip" id="session-chip"><span class="user-dot"></span><span id="session-label">Guest</span></span>
+        <div class="auth-actions" id="auth-actions">
+          <a class="button" href="login.html">Log in</a>
+          <a class="button primary-link" href="signup.html">Sign up</a>
+        </div>
+        <button class="button is-hidden" id="logout-button" type="button">Log out</button>
         <button class="theme-toggle" id="theme-toggle" type="button">Light</button>
       </div>
     </header>
@@ -593,6 +790,8 @@
       <a href="board.html#practice" id="nav-puzzle-start">Puzzles</a>
       <a href="index.html#repertoire">Repertoire</a>
       <a href="index.html#study">Study</a>
+      <a href="login.html">Log in</a>
+      <a href="signup.html">Sign up</a>
     </nav>
 
     <section class="page active" data-page="practice">
@@ -601,11 +800,16 @@
           <div class="board-top">
             <div class="branch-title">
               <strong id="branch-line">Starting position</strong>
-              <span>Tap piece → tap square, or drag normally.</span>
+              <span>Tap or drag pieces to move.</span>
             </div>
             <span class="pill" id="line-count">0 sharp lines</span>
           </div>
           <div class="board" id="board" aria-label="Playable chessboard"></div>
+          <div class="board-footer" aria-label="Board summary">
+            <span class="mini-stat" id="turn-chip">White to move</span>
+            <span class="mini-stat" id="book-chip">Book ready</span>
+            <span class="mini-stat" id="move-chip">Move 1</span>
+          </div>
         </section>
 
         <aside class="panel-stack" aria-label="Trainer controls">
@@ -620,6 +824,7 @@
                 <span>Opening tree</span>
                 <select id="opening-choice"></select>
               </label>
+              <p class="field-help" id="opening-description">Choose a repertoire to train.</p>
               <label class="field">
                 <span>You play</span>
                 <input id="player-side" type="text" value="White" readonly>
@@ -670,7 +875,7 @@
             </div>
           </section>
 
-          <section class="status-card" aria-live="polite">
+          <section class="status-card" id="status-card" aria-live="polite">
             <div class="status-main">
               <strong id="trainer-status">Your move.</strong>
               <span class="mini-chip" id="mode-chip">Aggressive only</span>
@@ -680,8 +885,32 @@
           </section>
 
           <section class="moves-card">
-            <h3>Move list</h3>
+            <div class="moves-head">
+              <h3>Move list</h3>
+              <button class="button compact" id="copy-pgn" type="button">Copy PGN</button>
+            </div>
             <div class="move-list" id="move-list">Moves will appear here.</div>
+          </section>
+
+          <section class="stats-card" aria-label="Session stats">
+            <div class="stats-head">
+              <h3>Session</h3>
+              <button class="button compact" id="reset-stats" type="button">Reset</button>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-tile">
+                <strong class="stat-value" id="accuracy-stat">100%</strong>
+                <span class="stat-label">Book accuracy</span>
+              </div>
+              <div class="stat-tile">
+                <strong class="stat-value" id="streak-stat">0</strong>
+                <span class="stat-label">Current streak</span>
+              </div>
+              <div class="stat-tile">
+                <strong class="stat-value" id="mistake-stat">0</strong>
+                <span class="stat-label">Mistakes</span>
+              </div>
+            </div>
           </section>
         </aside>
       </div>
@@ -696,8 +925,8 @@
           <p>Low Stockfish hash, short think time, and no constant full-board redraw while dragging.</p>
         </article>
         <article class="help-card">
-          <h3>Right-drag arrows</h3>
-          <p>Right-drag with mouse for arrows. On phone, use the trainer mainly with tap moves.</p>
+          <h3>Board controls</h3>
+          <p>Right-drag arrows. Repeat an arrow to remove it. Right-click while dragging a piece cancels the drag.</p>
         </article>
       </div>
     </section>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Log in - Chess Opening Trainer</title>
+  <script>
+    try {
+      const saved = localStorage.getItem("chess-opening-theme") || "dark";
+      document.documentElement.dataset.theme = saved === "light" ? "light" : "dark";
+    } catch {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">♞</div>
+        <div class="brand-copy">
+          <span class="eyebrow">Chess Opening Trainer</span>
+          <h1>Log in</h1>
+          <p class="subtitle">Jump back into your repertoire and puzzle drills.</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="button" href="board.html#practice">Trainer</a>
+        <a class="button primary" href="signup.html">Sign up</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">Light</button>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="board.html#practice">Board</a>
+      <a href="index.html#repertoire">Repertoire</a>
+      <a class="active" href="login.html">Log in</a>
+      <a href="signup.html">Sign up</a>
+    </nav>
+
+    <section class="auth-layout" aria-label="Login">
+      <article class="auth-panel">
+        <h2>Welcome back</h2>
+        <form class="auth-form" data-auth-form="login">
+          <label class="field">
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <div class="password-wrap">
+              <input name="password" type="password" autocomplete="current-password" required>
+              <button class="peek" type="button" data-toggle-password>Show</button>
+            </div>
+          </label>
+          <div class="form-actions">
+            <button class="button primary" type="submit">Log in</button>
+            <a class="button" href="board.html#practice">Continue as guest</a>
+          </div>
+          <p class="status" id="auth-status" aria-live="polite"></p>
+        </form>
+        <p class="switch-note">Need an account? <a href="signup.html">Sign up</a></p>
+      </article>
+
+      <aside class="auth-copy">
+        <h2>Train the line, then test the position.</h2>
+        <p>Your local session keeps the entry flow tidy while the trainer stays fast and focused.</p>
+        <ul class="auth-copy-list">
+          <li>Pick a single opening tree when you want focused reps.</li>
+          <li>Wrong book moves are shown, highlighted, and taken back.</li>
+          <li>Use puzzle mode when the first moves feel automatic.</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+  <script type="module" src="auth.js"></script>
+</body>
+</html>

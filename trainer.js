@@ -65,6 +65,127 @@ const whiteLines = [
   },
   {
     tag: "vs 1...e5",
+    name: "Fried Liver Main Continued",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "Bc4",
+      "Nf6",
+      "Ng5",
+      "d5",
+      "exd5",
+      "Nxd5",
+      "Nxf7",
+      "Kxf7",
+      "Qf3+",
+      "Ke6",
+      "Nc3",
+      "Nb4",
+      "Qe4",
+      "c6",
+      "a3",
+      "Nxc2+",
+      "Qxc2"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Fried Liver 8...Ne7 Setup",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "Bc4",
+      "Nf6",
+      "Ng5",
+      "d5",
+      "exd5",
+      "Nxd5",
+      "Nxf7",
+      "Kxf7",
+      "Qf3+",
+      "Ke6",
+      "Nc3",
+      "Ne7",
+      "d4",
+      "c6",
+      "O-O",
+      "exd4",
+      "Re1+"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Two Knights 5...Na5 Main",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "Bc4",
+      "Nf6",
+      "Ng5",
+      "d5",
+      "exd5",
+      "Na5",
+      "Bb5+",
+      "c6",
+      "dxc6",
+      "bxc6",
+      "Be2",
+      "h6",
+      "Nf3",
+      "e4",
+      "Ne5"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Two Knights Ulvestad",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "Bc4",
+      "Nf6",
+      "Ng5",
+      "d5",
+      "exd5",
+      "b5",
+      "Bf1",
+      "Nd4",
+      "c3",
+      "Nxd5",
+      "Ne4"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Traxler Safe Line",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "Bc4",
+      "Nf6",
+      "Ng5",
+      "Bc5",
+      "Bxf7+",
+      "Ke7",
+      "Bb3",
+      "Rf8",
+      "d3",
+      "d6",
+      "Nf3"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
     name: "Scotch Open Center",
     moves: [
       "e4",
@@ -120,6 +241,128 @@ const whiteLines = [
       "d4",
       "O-O",
       "Bd3"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Ruy Lopez Classical Build",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "Bb5",
+      "a6",
+      "Ba4",
+      "Nf6",
+      "O-O",
+      "Be7",
+      "Re1",
+      "b5",
+      "Bb3",
+      "d6",
+      "c3",
+      "O-O",
+      "h3"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Italian Giuoco Piano Build",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "Bc4",
+      "Bc5",
+      "c3",
+      "Nf6",
+      "d3",
+      "d6",
+      "O-O",
+      "O-O",
+      "Re1",
+      "a6",
+      "Bb3"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Scotch Gambit Pressure",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "d4",
+      "exd4",
+      "Bc4",
+      "Bc5",
+      "O-O",
+      "Nf6",
+      "e5",
+      "d5",
+      "exf6",
+      "dxc4",
+      "Re1+"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Danish Gambit",
+    moves: [
+      "e4",
+      "e5",
+      "d4",
+      "exd4",
+      "c3",
+      "dxc3",
+      "Bc4",
+      "cxb2",
+      "Bxb2",
+      "Nf6",
+      "Nf3",
+      "Bb4+",
+      "Nc3"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Center Game Development",
+    moves: [
+      "e4",
+      "e5",
+      "d4",
+      "exd4",
+      "Qxd4",
+      "Nc6",
+      "Qe3",
+      "Nf6",
+      "Nc3",
+      "Bb4",
+      "Bd2",
+      "O-O",
+      "O-O-O"
+    ]
+  },
+  {
+    tag: "vs 1...e5",
+    name: "Four Knights Spanish",
+    moves: [
+      "e4",
+      "e5",
+      "Nf3",
+      "Nc6",
+      "Nc3",
+      "Nf6",
+      "Bb5",
+      "Bb4",
+      "O-O",
+      "O-O",
+      "d3",
+      "d6",
+      "Bg5"
     ]
   },
   {
@@ -993,6 +1236,10 @@ const blackFlankLines = [
   }
 ];
 
+function whiteLinesByTag(...tags) {
+  return whiteLines.filter((line) => tags.includes(line.tag));
+}
+
 const repertoires = [
   {
     group: "Simple Repertoire",
@@ -1003,10 +1250,94 @@ const repertoires = [
   },
   {
     group: "Simple Repertoire",
+    name: "WHITE — 1...e5 only",
+    playAs: "w",
+    description: "Only open-game 1.e4 e5 lines: Italian, Fried Liver, Ruy Lopez, Scotch, Danish, Center Game, King's Gambit, Vienna, and Four Knights.",
+    lines: whiteLinesByTag("vs 1...e5")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Sicilian only",
+    playAs: "w",
+    description: "Only anti-Sicilian lines: Smith-Morra, Grand Prix, and Rossolimo pressure.",
+    lines: whiteLinesByTag("vs Sicilian")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — French only",
+    playAs: "w",
+    description: "Only French Defense lines with aggressive Advance and Milner-Barry ideas.",
+    lines: whiteLinesByTag("vs French")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Caro-Kann only",
+    playAs: "w",
+    description: "Only Caro-Kann Advance lines, including the Tal h4 idea.",
+    lines: whiteLinesByTag("vs Caro-Kann")
+  },
+  {
+    group: "Simple Repertoire",
     name: "WHITE — Scandinavian only",
     playAs: "w",
     description: "Only 1.e4 d5 2.exd5 lines, including 2...Qxd5 and 2...Nf6.",
-    lines: whiteLines.filter((line) => line.moves[0] === "e4" && line.moves[1] === "d5")
+    lines: whiteLinesByTag("vs Scandinavian")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Pirc/Modern only",
+    playAs: "w",
+    description: "Only Pirc and Modern setups with Austrian and 150 Attack ideas.",
+    lines: whiteLinesByTag("vs Pirc/Modern", "vs Modern")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Alekhine only",
+    playAs: "w",
+    description: "Only Alekhine Defense lines where White chases the knight and grabs space.",
+    lines: whiteLinesByTag("vs Alekhine")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Nimzowitsch only",
+    playAs: "w",
+    description: "Only 1...Nc6 Nimzowitsch lines with center space and development.",
+    lines: whiteLinesByTag("vs Nimzowitsch")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Owen only",
+    playAs: "w",
+    description: "Only 1...b6 Owen Defense lines with a big center.",
+    lines: whiteLinesByTag("vs Owen")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — St George only",
+    playAs: "w",
+    description: "Only 1...a6 St George lines for punishing the slow queenside setup.",
+    lines: whiteLinesByTag("vs St George")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Borg only",
+    playAs: "w",
+    description: "Only 1...g5 Borg lines for hitting the early pawn push.",
+    lines: whiteLinesByTag("vs Borg")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Polish only",
+    playAs: "w",
+    description: "Only 1...b5 Polish Defense lines.",
+    lines: whiteLinesByTag("vs Polish")
+  },
+  {
+    group: "Simple Repertoire",
+    name: "WHITE — Fred only",
+    playAs: "w",
+    description: "Only 1...f5 Fred Defense lines.",
+    lines: whiteLinesByTag("vs Fred")
   },
   {
     group: "Simple Repertoire",
@@ -1039,8 +1370,14 @@ const newGameEl = document.querySelector("#new-game");
 const flipBoardEl = document.querySelector("#flip-board");
 const undoMoveEl = document.querySelector("#undo-move");
 const themeToggleEl = document.querySelector("#theme-toggle");
+const sessionChipEl = document.querySelector("#session-chip");
+const sessionLabelEl = document.querySelector("#session-label");
+const authActionsEl = document.querySelector("#auth-actions");
+const logoutButtonEl = document.querySelector("#logout-button");
 const hintEl = document.querySelector("#hint-move");
 const clearArrowsEl = document.querySelector("#clear-arrows");
+const copyPgnEl = document.querySelector("#copy-pgn");
+const resetStatsEl = document.querySelector("#reset-stats");
 const startPuzzlesEl = document.querySelector("#start-puzzles");
 const nextPuzzleEl = document.querySelector("#next-puzzle");
 const answerPuzzleEl = document.querySelector("#answer-puzzle");
@@ -1051,12 +1388,20 @@ const puzzleCountEl = document.querySelector("#puzzle-count");
 const puzzleScoreEl = document.querySelector("#puzzle-score");
 const navPuzzleStartEl = document.querySelector("#nav-puzzle-start");
 const modeChipEl = document.querySelector("#mode-chip");
+const statusCardEl = document.querySelector("#status-card");
 const trainerStatusEl = document.querySelector("#trainer-status");
 const bookStatusEl = document.querySelector("#book-status");
 const engineStatusEl = document.querySelector("#engine-status");
 const moveListEl = document.querySelector("#move-list");
 const lineCountEl = document.querySelector("#line-count");
 const branchLineEl = document.querySelector("#branch-line");
+const openingDescriptionEl = document.querySelector("#opening-description");
+const turnChipEl = document.querySelector("#turn-chip");
+const bookChipEl = document.querySelector("#book-chip");
+const moveChipEl = document.querySelector("#move-chip");
+const accuracyStatEl = document.querySelector("#accuracy-stat");
+const streakStatEl = document.querySelector("#streak-stat");
+const mistakeStatEl = document.querySelector("#mistake-stat");
 const pageEls = [...document.querySelectorAll("[data-page]")];
 const pageLinkEls = [...document.querySelectorAll("[data-nav-page]")];
 
@@ -1079,6 +1424,7 @@ let arrows = [];
 let draftArrow = null;
 let pointerState = null;
 let dragGhost = null;
+let dragSourceSquare = null;
 let puzzleMode = false;
 let puzzleBank = [];
 let currentPuzzle = null;
@@ -1092,6 +1438,13 @@ let puzzleCorrect = 0;
 let puzzleAttempts = 0;
 let puzzleStreak = 0;
 let puzzleTimer = 0;
+let practiceFeedback = "";
+let practiceDetails = "";
+let practiceWrongMove = null;
+let practiceAttempts = 0;
+let practiceCorrect = 0;
+let practiceMistakes = 0;
+let practiceStreak = 0;
 
 function escapeHtml(value) {
   return String(value)
@@ -1131,6 +1484,58 @@ function applyTheme(theme, persist = true) {
 
 function toggleTheme() {
   applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+}
+
+function readJsonStorage(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function updateSessionUi() {
+  const profile = readJsonStorage("chess-opening-profile");
+  const session = readJsonStorage("chess-opening-session");
+  const label = profile?.name || session?.email || "";
+
+  if (label) {
+    if (sessionChipEl) sessionChipEl.classList.add("active");
+    if (sessionLabelEl) sessionLabelEl.textContent = label;
+    if (authActionsEl) authActionsEl.classList.add("is-hidden");
+    if (logoutButtonEl) logoutButtonEl.classList.remove("is-hidden");
+    return;
+  }
+
+  if (sessionChipEl) sessionChipEl.classList.remove("active");
+  if (sessionLabelEl) sessionLabelEl.textContent = "Guest";
+  if (authActionsEl) authActionsEl.classList.remove("is-hidden");
+  if (logoutButtonEl) logoutButtonEl.classList.add("is-hidden");
+}
+
+function logout() {
+  try {
+    localStorage.removeItem("chess-opening-session");
+  } catch {
+    // storage can be unavailable on some Android browsers
+  }
+  updateSessionUi();
+}
+
+function updatePracticeStats() {
+  const accuracy = practiceAttempts ? Math.round((practiceCorrect / practiceAttempts) * 100) : 100;
+  if (accuracyStatEl) accuracyStatEl.textContent = `${accuracy}%`;
+  if (streakStatEl) streakStatEl.textContent = String(practiceStreak);
+  if (mistakeStatEl) mistakeStatEl.textContent = String(practiceMistakes);
+}
+
+function resetPracticeStats() {
+  practiceAttempts = 0;
+  practiceCorrect = 0;
+  practiceMistakes = 0;
+  practiceStreak = 0;
+  updatePracticeStats();
 }
 
 function getLinePool() {
@@ -1296,16 +1701,57 @@ function puzzleMovePreview() {
   return currentPuzzle.beforeMoves.join(" ");
 }
 
+function setStatusTone(tone = "") {
+  if (!statusCardEl) return;
+  statusCardEl.classList.remove("good", "bad", "thinking");
+  if (tone) statusCardEl.classList.add(tone);
+}
+
+function toneFromFeedback(message) {
+  if (/correct|nice|ready/i.test(message)) return "good";
+  if (/incorrect|wrong|illegal|failed|out of book|no puzzles/i.test(message)) return "bad";
+  if (/thinking|loading/i.test(message)) return "thinking";
+  return "";
+}
+
+function updateOpeningDescription() {
+  if (!openingDescriptionEl) return;
+  const side = selectedRepertoire.playAs === "w" ? "White" : "Black";
+  openingDescriptionEl.textContent = `${selectedRepertoire.description} ${side} to move in this tree.`;
+}
+
+function updateBoardSummary(bookMoves = null) {
+  const side = game.turn() === "w" ? "White" : "Black";
+  const ply = game.history().length;
+  const moveNumber = Math.floor(ply / 2) + 1;
+  const moves = bookMoves || (puzzleMode ? [] : currentBookMoves());
+
+  if (turnChipEl) turnChipEl.textContent = `${side} to move`;
+  if (moveChipEl) moveChipEl.textContent = `Move ${moveNumber} • ${ply} ply`;
+  if (!bookChipEl) return;
+
+  if (puzzleMode) {
+    bookChipEl.textContent = puzzleSolved ? "Puzzle solved" : "Puzzle drill";
+  } else if (moves.length) {
+    bookChipEl.textContent = `${moves.length} book move${moves.length === 1 ? "" : "s"}`;
+  } else if (isBookIntact()) {
+    bookChipEl.textContent = "Branch complete";
+  } else {
+    bookChipEl.textContent = "Out of book";
+  }
+}
+
 function updatePuzzleStatus() {
   if (!currentPuzzle) return;
   const answer = puzzleAnswerText();
   const side = puzzleSideName();
+  const feedback = puzzleFeedback || `${side} to move — find the aggressive book move.`;
 
   if (modeChipEl) modeChipEl.textContent = "Puzzle mode";
   if (lineCountEl) lineCountEl.textContent = `${filteredPuzzleBank().length} puzzles`;
   if (branchLineEl) branchLineEl.textContent = `${currentPuzzle.label} • move ${currentPuzzle.moveNumber}`;
 
-  trainerStatusEl.textContent = puzzleFeedback || `${side} to move — find the aggressive book move.`;
+  trainerStatusEl.textContent = feedback;
   bookStatusEl.textContent = puzzleDetails || (puzzleSolved
     ? `Answer: ${answer}`
     : `Opening puzzle from: ${currentPuzzle.lineNames.slice(0, 2).join(" / ")}`);
@@ -1313,7 +1759,10 @@ function updatePuzzleStatus() {
   moveListEl.textContent = puzzleWrongMove
     ? `Wrong move played: ${puzzleWrongMove.san} • Position after: ${puzzleMovePreview()}`
     : `Position after: ${puzzleMovePreview()}`;
+  setStatusTone(toneFromFeedback(feedback));
+  updateBoardSummary();
   updatePuzzleScore();
+  updatePracticeStats();
 }
 
 function startPuzzleMode() {
@@ -1330,6 +1779,7 @@ function startPuzzleMode() {
   puzzleHintMove = null;
   puzzleWrongMove = null;
   updatePuzzleScore();
+  updatePracticeStats();
   nextPuzzle();
 }
 
@@ -1517,6 +1967,7 @@ function pieceHtml(piece) {
 
 function renderBoard() {
   const { displayFiles, displayRanks } = boardOrientation();
+  const wrongMove = puzzleMode ? puzzleWrongMove : practiceWrongMove;
   const legalTargets = selectedSquare && game.turn() === playerColor && !engineThinking
     ? game.moves({ square: selectedSquare, verbose: true }).map((move) => move.to)
     : [];
@@ -1534,7 +1985,7 @@ function renderBoard() {
     if (square === selectedSquare) classes.push("selected");
     if (legalTargets.includes(square)) classes.push("legal");
     if (lastMove && (lastMove.from === square || lastMove.to === square)) classes.push("last-move");
-    if (puzzleWrongMove && (puzzleWrongMove.from === square || puzzleWrongMove.to === square)) classes.push("wrong-move");
+    if (wrongMove && (wrongMove.from === square || wrongMove.to === square)) classes.push("wrong-move");
     if (puzzleHintMove && puzzleHintMove.from === square) classes.push("hint-from");
     if (puzzleHintMove && puzzleHintLevel >= 2 && puzzleHintMove.to === square) classes.push("hint-to");
 
@@ -1556,20 +2007,26 @@ function updateStatus() {
   if (modeChipEl) modeChipEl.textContent = "Aggressive only";
   const bookMoves = currentBookMoves();
   const side = game.turn() === "w" ? "White" : "Black";
+  let statusText = "";
 
   if (game.isCheckmate()) {
-    trainerStatusEl.textContent = `${side} is checkmated.`;
+    statusText = `${side} is checkmated.`;
   } else if (game.isDraw()) {
-    trainerStatusEl.textContent = "Game drawn.";
+    statusText = "Game drawn.";
   } else if (game.isGameOver()) {
-    trainerStatusEl.textContent = "Game over.";
+    statusText = "Game over.";
+  } else if (practiceFeedback) {
+    statusText = practiceFeedback;
   } else if (game.turn() === playerColor) {
-    trainerStatusEl.textContent = game.inCheck() ? "Your move — you are in check." : "Your move.";
+    statusText = game.inCheck() ? "Your move — you are in check." : "Your move.";
   } else {
-    trainerStatusEl.textContent = engineThinking ? "Stockfish is thinking..." : "Opponent move.";
+    statusText = engineThinking ? "Stockfish is thinking..." : "Opponent move.";
   }
+  trainerStatusEl.textContent = statusText;
 
-  if (bookMoves.length) {
+  if (practiceDetails) {
+    bookStatusEl.textContent = practiceDetails;
+  } else if (bookMoves.length) {
     const owner = game.turn() === playerColor ? "Your sharp book move" : "Book reply";
     bookStatusEl.textContent = `${owner}: ${formatMoves(bookMoves)}`;
   } else if (isBookIntact()) {
@@ -1581,10 +2038,36 @@ function updateStatus() {
   if (lineCountEl) lineCountEl.textContent = `${selectedRepertoire.lines.length} sharp lines`;
   if (branchLineEl) branchLineEl.textContent = currentBranchName();
   moveListEl.textContent = game.history().length ? game.pgn() : "Moves will appear here.";
+  setStatusTone(engineThinking ? "thinking" : toneFromFeedback(statusText || bookStatusEl.textContent));
+  updateOpeningDescription();
+  updateBoardSummary(bookMoves);
+  updatePracticeStats();
 }
 
 function setEngineStatus(message) {
   if (engineStatusEl) engineStatusEl.textContent = message;
+}
+
+async function copyPgn() {
+  const text = game.history().length ? game.pgn() : "";
+  if (!text) {
+    if (copyPgnEl) copyPgnEl.textContent = "No moves";
+    window.setTimeout(() => {
+      if (copyPgnEl) copyPgnEl.textContent = "Copy PGN";
+    }, 900);
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    if (copyPgnEl) copyPgnEl.textContent = "Copied";
+  } catch {
+    if (copyPgnEl) copyPgnEl.textContent = "Copy failed";
+  }
+
+  window.setTimeout(() => {
+    if (copyPgnEl) copyPgnEl.textContent = "Copy PGN";
+  }, 1100);
 }
 
 function currentPageFromHash() {
@@ -1693,6 +2176,9 @@ function newGame() {
   currentPuzzle = null;
   puzzleSolved = false;
   puzzleFeedback = "";
+  practiceFeedback = "";
+  practiceDetails = "";
+  practiceWrongMove = null;
   clearTimeout(puzzleTimer);
   clearTimeout(opponentTimer);
   cancelEngineSearch();
@@ -1734,6 +2220,9 @@ function undoMovePair() {
   clearTimeout(opponentTimer);
   cancelEngineSearch();
   selectedSquare = null;
+  practiceFeedback = "";
+  practiceDetails = "";
+  practiceWrongMove = null;
 
   if (game.history().length === 0) return;
   game.undo();
@@ -1759,10 +2248,29 @@ function playPlayerMove(from, to) {
     return;
   }
   const bookMoves = currentBookMoves();
+  const previousLastMove = lastMove;
   const move = makeMove({ from, to, promotion: "q" });
 
   if (!move) {
     selectedSquare = null;
+    practiceFeedback = "";
+    practiceDetails = "";
+    practiceWrongMove = null;
+    renderBoard();
+    updateStatus();
+    return;
+  }
+
+  if (bookMoves.length && !isMoveInBook(move.san, bookMoves)) {
+    practiceAttempts += 1;
+    practiceMistakes += 1;
+    practiceStreak = 0;
+    game.undo();
+    selectedSquare = null;
+    lastMove = previousLastMove;
+    practiceWrongMove = { from: move.from, to: move.to, san: move.san };
+    practiceFeedback = `Incorrect: ${move.san}`;
+    practiceDetails = `Book move: ${formatMoves(bookMoves)}. Move taken back.`;
     renderBoard();
     updateStatus();
     return;
@@ -1770,12 +2278,15 @@ function playPlayerMove(from, to) {
 
   selectedSquare = null;
   lastMove = { from: move.from, to: move.to };
-  renderBoard();
-
-  if (bookMoves.length && !isMoveInBook(move.san, bookMoves)) {
-    bookStatusEl.textContent = `Legal, but sharp book wanted: ${formatMoves(bookMoves)}.`;
+  if (bookMoves.length) {
+    practiceAttempts += 1;
+    practiceCorrect += 1;
+    practiceStreak += 1;
   }
-
+  practiceFeedback = "";
+  practiceDetails = "";
+  practiceWrongMove = null;
+  renderBoard();
   updateStatus();
   if (!game.isGameOver()) scheduleOpponentMove(180);
 }
@@ -1866,6 +2377,8 @@ function createDragGhost(square, event) {
   const piece = game.get(square);
   if (!piece) return;
   const key = piece.color + piece.type;
+  dragSourceSquare = square;
+  boardEl.querySelector(`[data-square="${square}"]`)?.classList.add("drag-source");
   dragGhost = document.createElement("div");
   dragGhost.className = "drag-ghost";
   dragGhost.innerHTML = pieceHtml(piece);
@@ -1882,6 +2395,10 @@ function moveDragGhost(event) {
 function clearDragGhost() {
   if (dragGhost) dragGhost.remove();
   dragGhost = null;
+  if (dragSourceSquare) {
+    boardEl.querySelector(`[data-square="${dragSourceSquare}"]`)?.classList.remove("drag-source");
+  }
+  dragSourceSquare = null;
 }
 
 function handlePointerDown(event) {
@@ -1891,6 +2408,14 @@ function handlePointerDown(event) {
 
   const piece = game.get(square);
   const rightClick = event.button === 2 || event.buttons === 2;
+
+  if (rightClick && pointerState && !pointerState.rightClick) {
+    pointerState = null;
+    clearDragGhost();
+    renderBoard();
+    event.preventDefault();
+    return;
+  }
 
   pointerState = {
     from: square,
@@ -1924,6 +2449,14 @@ function handlePointerMove(event) {
       draftArrow = { from: pointerState.from, to: square };
       renderBoard();
     }
+    return;
+  }
+
+  if (pointerState.canMove && pointerState.moved && (event.buttons & 2)) {
+    pointerState = null;
+    clearDragGhost();
+    renderBoard();
+    event.preventDefault();
     return;
   }
 
@@ -2036,6 +2569,12 @@ function showHint() {
     return;
   }
   const moves = currentBookMoves();
+  practiceFeedback = "";
+  practiceDetails = "";
+  practiceWrongMove = null;
+  renderBoard();
+  updateStatus();
+
   if (moves.length) {
     bookStatusEl.textContent = `Hint: ${formatMoves(moves)}`;
   } else {
@@ -2056,8 +2595,11 @@ function wireEvents() {
   flipBoardEl.addEventListener("click", flipBoard);
   undoMoveEl.addEventListener("click", undoMovePair);
   if (themeToggleEl) themeToggleEl.addEventListener("click", toggleTheme);
+  if (logoutButtonEl) logoutButtonEl.addEventListener("click", logout);
   if (hintEl) hintEl.addEventListener("click", showHint);
   if (clearArrowsEl) clearArrowsEl.addEventListener("click", clearArrows);
+  if (copyPgnEl) copyPgnEl.addEventListener("click", copyPgn);
+  if (resetStatsEl) resetStatsEl.addEventListener("click", resetPracticeStats);
   if (startPuzzlesEl) startPuzzlesEl.addEventListener("click", startPuzzleMode);
   if (nextPuzzleEl) nextPuzzleEl.addEventListener("click", nextPuzzle);
   if (answerPuzzleEl) answerPuzzleEl.addEventListener("click", showPuzzleAnswer);
@@ -2082,12 +2624,22 @@ function wireEvents() {
     clearDragGhost();
     renderBoard();
   });
-  boardEl.addEventListener("contextmenu", (event) => event.preventDefault());
+  boardEl.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+    if (pointerState && !pointerState.rightClick) {
+      pointerState = null;
+      clearDragGhost();
+      renderBoard();
+    }
+  });
 
   window.addEventListener("hashchange", () => showPage(currentPageFromHash()));
+  window.addEventListener("storage", updateSessionUi);
 }
 
 applyTheme(readSavedTheme(), false);
+updateSessionUi();
+updatePracticeStats();
 populateOpenings();
 wireEvents();
 showPage(currentPageFromHash());

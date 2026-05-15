@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sign up - Chess Opening Trainer</title>
+  <script>
+    try {
+      const saved = localStorage.getItem("chess-opening-theme") || "dark";
+      document.documentElement.dataset.theme = saved === "light" ? "light" : "dark";
+    } catch {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">♞</div>
+        <div class="brand-copy">
+          <span class="eyebrow">Chess Opening Trainer</span>
+          <h1>Sign up</h1>
+          <p class="subtitle">Create a profile and start drilling your opening tree.</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="button" href="board.html#practice">Trainer</a>
+        <a class="button" href="login.html">Log in</a>
+        <button class="theme-toggle" id="theme-toggle" type="button">Light</button>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="board.html#practice">Board</a>
+      <a href="index.html#repertoire">Repertoire</a>
+      <a href="login.html">Log in</a>
+      <a class="active" href="signup.html">Sign up</a>
+    </nav>
+
+    <section class="auth-layout" aria-label="Sign up">
+      <article class="auth-panel">
+        <h2>Create account</h2>
+        <form class="auth-form" data-auth-form="signup">
+          <label class="field">
+            <span>Name</span>
+            <input name="name" type="text" autocomplete="name" required>
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <div class="password-wrap">
+              <input name="password" type="password" autocomplete="new-password" minlength="6" required>
+              <button class="peek" type="button" data-toggle-password>Show</button>
+            </div>
+          </label>
+          <label class="field">
+            <span>Confirm password</span>
+            <input name="confirm-password" type="password" autocomplete="new-password" minlength="6" required>
+          </label>
+          <p class="form-note">This creates a local profile for this browser.</p>
+          <div class="form-actions">
+            <button class="button primary" type="submit">Create account</button>
+            <a class="button" href="board.html#practice">Continue as guest</a>
+          </div>
+          <p class="status" id="auth-status" aria-live="polite"></p>
+        </form>
+        <p class="switch-note">Already have an account? <a href="login.html">Log in</a></p>
+      </article>
+
+      <aside class="auth-copy">
+        <h2>One account, one clean repertoire.</h2>
+        <p>Use the trainer for opening reps, then switch into puzzle mode when you want exact-move pressure.</p>
+        <ul class="auth-copy-list">
+          <li>Start with the combined 1.e4 tree.</li>
+          <li>Move to an “only” tree when one defense needs drilling.</li>
+          <li>Use hints sparingly, then replay the branch from memory.</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+  <script type="module" src="auth.js"></script>
+</body>
+</html>
